@@ -1,0 +1,34 @@
+Refs
+
+Unity:
+    Old way:
+        - Properties are mixed, set from asset or from c#code, defined in shaderlab and accessed from code by string name
+        - Override by name, global are fallback
+        - No separation between state and gpu data, all arithmetics have to be hand written
+        - Lives in per object/per material/global cbuffers and bindings
+        - Conditionals -- keywords set from editor and api, shader_feature/multi_compile for static branch and multiple code compiles, or dyn branches. Decided per keyword, only works as branches, not as preproc.
+            Shader graph has no static branching or variants
+        https://docs.unity3d.com/2023.2/Documentation/Manual/SRPBatcher.html
+        https://www.youtube.com/watch?v=6LzcXPIWUbc&t=3009s
+    New ideas:
+        - gpu-side ecs with offsets to ByteAddress buffers for data. Declared in c# with attributes, auto-updated in bulk with mirrored archetypes on gpu. No calc in shaderlab though
+
+UE:
+    - Defines shaders low level in hlsl like lang, with special parsable parts to fill out (for example, params don't have regs decls)
+    - Parse hlsl with their own parser, filling out the stuff
+    - Has structured api for shader parameters submittion
+        - It seems like there is a parameter struct on cpu, then a binding table "params -> where they are in struct", and the engine just reads the struct with the table
+    https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/RenderCore/Public/ShaderCompilerCore.h
+    https://github.com/EpicGames/UnrealEngine/blob/release/Engine/Source/Runtime/RenderCore/Public/Shader.h
+
+CryEngine:
+    
+FBite:
+
+Unigine:
+
+Godot:
+
+Bevy:
+
+Some ubisoft shit:
